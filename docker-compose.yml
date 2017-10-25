@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  iri:
+    image: jinnerbichler/iri_testnet
+    ports:
+      - "80:14265"
+      - "14777:14777"
+      - "15777:15777"
