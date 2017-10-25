@@ -49,27 +49,27 @@ public class Snapshot {
                     initialState.put(new Hash(key), Long.valueOf(value));
                 }
             }
-            { // Check snapshot signature
-                trits = new int[Curl.HASH_LENGTH];
-                curl.squeeze(trits, 0, Curl.HASH_LENGTH);
-                int[] digests = new int[0];
-                int[] bundle = ISS.normalizedBundle(trits);
-                int[] root = null;
-                int i;
-                in = Snapshot.class.getResourceAsStream("/Snapshot.sig");
-                reader = new BufferedReader(new InputStreamReader(in));
-                for(i = 0; i < 3 && (line = reader.readLine()) != null; i++) {
-                    digests = ArrayUtils.addAll(digests, ISS.digest(SpongeFactory.Mode.KERL, Arrays.copyOfRange(bundle, i*ISS.NORMALIZED_FRAGMENT_LENGTH, (i+1)*ISS.NORMALIZED_FRAGMENT_LENGTH), Converter.trits(line)));
-                }
-                if((line = reader.readLine()) != null) {
-                    root = ISS.getMerkleRoot(SpongeFactory.Mode.CURLP81, ISS.address(SpongeFactory.Mode.KERL, digests), Converter.trits(line), 0, SNAPSHOT_INDEX, SNAPSHOT_PUBKEY_DEPTH);
-                } else {
-                    root = ISS.address(SpongeFactory.Mode.KERL, digests);
-                }
-                if(!Arrays.equals(Converter.trits(SNAPSHOT_PUBKEY), root)) {
-                    throw new RuntimeException("Snapshot signature failed.");
-                }
-            }
+//            { // Check snapshot signature
+//                trits = new int[Curl.HASH_LENGTH];
+//                curl.squeeze(trits, 0, Curl.HASH_LENGTH);
+//                int[] digests = new int[0];
+//                int[] bundle = ISS.normalizedBundle(trits);
+//                int[] root = null;
+//                int i;
+//                in = Snapshot.class.getResourceAsStream("/Snapshot.sig");
+//                reader = new BufferedReader(new InputStreamReader(in));
+//                for(i = 0; i < 3 && (line = reader.readLine()) != null; i++) {
+//                    digests = ArrayUtils.addAll(digests, ISS.digest(SpongeFactory.Mode.KERL, Arrays.copyOfRange(bundle, i*ISS.NORMALIZED_FRAGMENT_LENGTH, (i+1)*ISS.NORMALIZED_FRAGMENT_LENGTH), Converter.trits(line)));
+//                }
+//                if((line = reader.readLine()) != null) {
+//                    root = ISS.getMerkleRoot(SpongeFactory.Mode.CURLP81, ISS.address(SpongeFactory.Mode.KERL, digests), Converter.trits(line), 0, SNAPSHOT_INDEX, SNAPSHOT_PUBKEY_DEPTH);
+//                } else {
+//                    root = ISS.address(SpongeFactory.Mode.KERL, digests);
+//                }
+//                if(!Arrays.equals(Converter.trits(SNAPSHOT_PUBKEY), root)) {
+//                    throw new RuntimeException("Snapshot signature failed.");
+//                }
+//            }
         } catch (IOException e) {
             System.out.println("Failed to load snapshot.");
             System.exit(-1);

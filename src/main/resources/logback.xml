@@ -4,9 +4,9 @@
 	<!-- Appenders -->
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 	   <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
+            <level>DEBUG</level>
+            <!--<onMatch>ACCEPT</onMatch>-->
+            <!--<onMismatch>DENY</onMismatch>-->
         </filter>
         
 	   <target>System.out</target>
