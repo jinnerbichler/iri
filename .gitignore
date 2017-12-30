@@ -12,3 +12,5 @@ target/*
 *.iri
 *.jar
 src/main/ixi/
+
+testnetdb/
