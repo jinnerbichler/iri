@@ -119,11 +119,11 @@ public class TipsManager {
                 Hash tip = entryPoint(reference, extraTip, msDepth);
                 serialUpdateRatings(referenceSnapshot, tip, ratings, analyzedTips, extraTip);
                 analyzedTips.clear();
-                if (ledgerValidator.isTipConsistent(referenceSnapshot, tip)) {
-                    return markovChainMonteCarlo(referenceSnapshot, tip, extraTip, ratings, iterations, milestone.latestSolidSubtangleMilestoneIndex - depth * 2, maxDepthOk, seed);
-                } else {
-                    throw new RuntimeException("starting tip failed consistency check: " + tip.toString());
-                }
+//                if (ledgerValidator.isTipConsistent(referenceSnapshot, tip)) {
+                return markovChainMonteCarlo(referenceSnapshot, tip, extraTip, ratings, iterations, milestone.latestSolidSubtangleMilestoneIndex - depth * 2, maxDepthOk, seed);
+//                } else {
+//                    throw new RuntimeException("starting tip failed consistency check: " + tip.toString());
+//                }
             } catch (Exception e) {
                 e.printStackTrace();
                 log.error("Encountered error: " + e.getLocalizedMessage());
